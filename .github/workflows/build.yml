@@ -8,10 +8,16 @@ jobs:
     runs-on: ubuntu-22.04
 
     steps:
-      - name: Checkout source
+      - name: Checkout OpenWrt upstream
         uses: actions/checkout@v4
         with:
-          ref: pr20557
+          repository: openwrt/openwrt
+          fetch-depth: 0
+
+      - name: Fetch PR 20557
+        run: |
+          git fetch origin pull/20557/head:pr20557
+          git checkout pr20557
 
       - name: Install dependencies
         run: |
